@@ -65,7 +65,7 @@ func getBranches() {
 }
 
 func checkout(branch *string) {
-	go ttuy.Spinner("Checking out branch "+ttuy.Style(*branch, ttuy.Cyan)+"...", ttuy.Throbber)
+	go ttuy.Spinner("Checking out branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
 	var branchPath string = fmt.Sprintf("refs/heads/%s", *branch)
 	wt, err := repo.Worktree()
 	if err != nil {
@@ -95,7 +95,7 @@ func checkout(branch *string) {
 		// 		},
 		// 	},
 		// })
-		go ttuy.Spinner("Pulling branch "+ttuy.Style(*branch, ttuy.Cyan)+"...", ttuy.Throbber)
+		go ttuy.Spinner("Pulling branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
 		pullErr := wt.Pull(&git.PullOptions{
 			RemoteName:        "origin",
 			ReferenceName:     plumbing.ReferenceName(branchPath),
@@ -137,7 +137,7 @@ func checkout(branch *string) {
 func create(branch *string) {
 	ttuy.Menu("Based on Branch", branches)
 	checkout(&copyBranch)
-	go ttuy.Spinner("Creating branch "+ttuy.Style(*branch, ttuy.Cyan)+"...", ttuy.Throbber)
+	go ttuy.Spinner("Creating branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
 	var branchPath string = fmt.Sprintf("refs/heads/%s", *branch)
 	wt, err := repo.Worktree()
 	handleGit(err)
