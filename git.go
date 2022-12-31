@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/electrikmilk/args-parser"
 	"github.com/electrikmilk/ttuy"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
@@ -28,7 +29,7 @@ func checkForGit() {
 
 // Gets branches for this repo, either local or remote and loads them into memory
 func getBranches() {
-	if arg("r") {
+	if args.Using("remote") {
 		remote, remoteErr := repo.Remote("origin")
 		handleGit(remoteErr)
 		refList, listRemoteErr := remote.List(&git.ListOptions{})
@@ -77,7 +78,7 @@ func checkout(branch *string) {
 	ttuy.StopSpinner()
 	handleGit(err)
 	ttuy.Success("Checked out branch " + ttuy.Style(*branch, ttuy.Bold))
-	if arg("remote") {
+	if args.Using("remote") {
 		// ttuy.Menu("Does this pull need an SSH key?", []ttuy.Option{
 		// 	{
 		// 		Label: "Yes",
@@ -132,7 +133,7 @@ func checkout(branch *string) {
 // }
 
 func startBranch() {
-	if arg("initials") {
+	if args.Using("initials") {
 		saveInitials()
 	} else {
 		getInitials()

@@ -3,6 +3,7 @@ module arbor
 go 1.19
 
 require (
+	github.com/electrikmilk/args-parser v0.0.0-20221231050324-56307138f9bf
 	github.com/electrikmilk/ttuy v0.0.0-20221231035225-77470d8c27de
 	github.com/go-git/go-git/v5 v5.4.2
 )
@@ -18,11 +19,8 @@ require (
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20201106050909-4977a11b4351 // indirect
-	github.com/mattn/go-runewidth v0.0.12 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	github.com/muesli/reflow v0.3.0 // indirect
 	github.com/olekukonko/ts v0.0.0-20171002115256-78ecb04241c0 // indirect
-	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.0 // indirect
 	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b // indirect

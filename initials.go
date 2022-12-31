@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/electrikmilk/args-parser"
 	"github.com/electrikmilk/ttuy"
 )
 
@@ -16,7 +17,7 @@ var initials string
 var initialsPath string = os.ExpandEnv("$HOME/.initials")
 
 func getInitials() {
-	if _, err := os.Stat(initialsPath); errors.Is(err, os.ErrNotExist) || arg("initials") {
+	if _, err := os.Stat(initialsPath); errors.Is(err, os.ErrNotExist) || args.Using("initials") {
 		saveInitials()
 		fmt.Print(ttuy.Style("Use -i flag to reset initials."+eol+eol, ttuy.Dim))
 	} else {

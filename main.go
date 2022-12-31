@@ -8,18 +8,18 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/electrikmilk/args-parser"
 	"github.com/electrikmilk/ttuy"
 )
 
 func main() {
-	customUsage = "[branch|commit]"
-	registerArg("help", "h", "Show this help message")
-	registerArg("remote", "r", "Use remote branches as basis")
-	registerArg("initials", "i", "Set new initials")
-	registerArg("debug", "d", "Get debug output on error")
-	if arg("help") || len(os.Args) <= 1 {
-		usage()
-		return
+	args.CustomUsage = "[branch|commit]"
+	args.Register("help", "h", "Show this help message")
+	args.Register("remote", "r", "Use remote branches as basis")
+	args.Register("initials", "i", "Set new initials")
+	args.Register("debug", "d", "Get debug output on error")
+	if args.Using("help") || len(os.Args) <= 1 {
+		args.PrintUsage()
 	}
 	checkForGit()
 	if len(os.Args) > 1 {
@@ -35,7 +35,7 @@ func main() {
 // Handle a program error
 func handle(label string, err error) {
 	if err != nil {
-		if arg("debug") {
+		if args.Using("debug") {
 			fmt.Println(label)
 			panic(err)
 		} else {
