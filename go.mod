@@ -3,7 +3,7 @@ module arbor
 go 1.19
 
 require (
-	github.com/electrikmilk/ttuy v0.0.0-20221003192905-e580d030a3ca
+	github.com/electrikmilk/ttuy v0.0.0-20221231035225-77470d8c27de
 	github.com/go-git/go-git/v5 v5.4.2
 )
 

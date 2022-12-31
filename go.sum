@@ -19,6 +19,8 @@ github.com/electrikmilk/ttuy v0.0.0-20221001165543-4934f80d9b86 h1:VDETSI9waeMdV
 github.com/electrikmilk/ttuy v0.0.0-20221001165543-4934f80d9b86/go.mod h1:/grovoOkveaR+l7hNqxS0f44+lxuJB5scfN6jQrY4Js=
 github.com/electrikmilk/ttuy v0.0.0-20221003192905-e580d030a3ca h1:mr19kdo6SAy8LEAvLVJhmoE4C2govA/pD1EeEasiFgM=
 github.com/electrikmilk/ttuy v0.0.0-20221003192905-e580d030a3ca/go.mod h1:/grovoOkveaR+l7hNqxS0f44+lxuJB5scfN6jQrY4Js=
+github.com/electrikmilk/ttuy v0.0.0-20221231035225-77470d8c27de h1:2kvdt1e0pLXyRPTmurjAJUYX8+8zqBtRAYYcmAaGBlw=
+github.com/electrikmilk/ttuy v0.0.0-20221231035225-77470d8c27de/go.mod h1:BQY0lb07oxyAp5GvBPDmTqbdZ0ggy/T1jmtg69NuYj8=
 github.com/emirpasic/gods v1.12.0 h1:QAUIPSaCu4G+POclxeqb3F+WPpdKqFGlw36+yOzGlrg=
 github.com/emirpasic/gods v1.12.0/go.mod h1:YfzfFFoVP/catgzJb4IKIqXjX78Ha8FMSDh3ymbK86o=
 github.com/flynn/go-shlex v0.0.0-20150515145356-3f9db97f8568/go.mod h1:xEzjJPgXI435gkrCt3MPfRiAkVrwSbHsst4LCFVfpJc=

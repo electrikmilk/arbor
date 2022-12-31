@@ -65,20 +65,17 @@ func getBranches() {
 }
 
 func checkout(branch *string) {
-	go ttuy.Spinner("Checking out branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
 	var branchPath string = fmt.Sprintf("refs/heads/%s", *branch)
 	wt, err := repo.Worktree()
-	if err != nil {
-		return
-	}
 	handleGit(err)
+	go ttuy.Spinner("Checking out branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
 	err = wt.Checkout(&git.CheckoutOptions{
 		Create: false,
 		Force:  false,
 		Branch: plumbing.ReferenceName(branchPath),
 	})
-	handleGit(err)
 	ttuy.StopSpinner()
+	handleGit(err)
 	ttuy.Success("Checked out branch " + ttuy.Style(*branch, ttuy.Bold))
 	if arg("remote") {
 		// ttuy.Menu("Does this pull need an SSH key?", []ttuy.Option{
