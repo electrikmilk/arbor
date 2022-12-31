@@ -20,6 +20,7 @@ func main() {
 	registerArg("help", "h", "Show this help message")
 	registerArg("remote", "r", "Use remote branches as basis")
 	registerArg("initials", "i", "Set new initials")
+	registerArg("debug", "d", "Get debug output on error")
 	if arg("help") {
 		usage()
 		return
@@ -62,4 +63,21 @@ func main() {
 	ttuy.Ask("Reference", &reference)
 	var name string = fmt.Sprintf("%s/%s/%s", branchType, initials, reference)
 	create(&name)
+}
+
+// Handle a program error
+func handle(label string, err error) {
+	if err != nil {
+		if arg("debug") {
+			fmt.Println(label)
+			panic(err)
+		} else {
+			ttuy.FailErr(label, err)
+		}
+	}
+}
+
+// Alias for handle, defaults label to "Git"
+func handleGit(err error) {
+	handle("Git", err)
 }

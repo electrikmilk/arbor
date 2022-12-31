@@ -16,12 +16,12 @@ var initials string
 var initialsPath string = os.ExpandEnv("$HOME/.initials")
 
 func getInitials() {
-	if _, err := os.Stat(initialsPath); errors.Is(err, os.ErrNotExist) || arg("initials") == true {
+	if _, err := os.Stat(initialsPath); errors.Is(err, os.ErrNotExist) || arg("initials") {
 		saveInitials()
-		fmt.Printf(ttuy.Style("Use -i flag to reset initials."+EOL+EOL, ttuy.Dim))
+		fmt.Print(ttuy.Style("Use -i flag to reset initials."+eol+eol, ttuy.Dim))
 	} else {
 		savedInitials, readErr := os.ReadFile(initialsPath)
-		handle(readErr)
+		handle("Read File Error", readErr)
 		initials = string(savedInitials)
 	}
 }
@@ -32,7 +32,7 @@ func saveInitials() {
 		ttuy.FailErr("Unable to create initials", createErr)
 		defer func(f *os.File) {
 			err := f.Close()
-			handle(err)
+			handle("Create File Error", err)
 		}(f)
 	}
 	ttuy.Ask("Enter your initials", &initials)
