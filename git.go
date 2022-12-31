@@ -131,18 +131,110 @@ func checkout(branch *string) {
 // auth = &gitssh.PublicKeys{User: "git", Signer: signer}
 // }
 
-func create(branch *string) {
+func startBranch() {
+	if arg("initials") {
+		saveInitials()
+	} else {
+		getInitials()
+	}
+	var branchType string
+	ttuy.Menu("Type of Branch", []ttuy.Option{
+		{
+			Label: "Hotfix",
+			Callback: func() {
+				branchType = "hotfix"
+			},
+		},
+		{
+			Label: "Bug",
+			Callback: func() {
+				branchType = "bug"
+			},
+		},
+		{
+			Label: "Enhancement",
+			Callback: func() {
+				branchType = "enhancement"
+			},
+		},
+		{
+			Label: "Feature",
+			Callback: func() {
+				branchType = "feature"
+			},
+		},
+	})
+	var reference string
+	fmt.Println(ttuy.Style("Enter a ticket number, or dash seperated string describing the branch.", ttuy.Dim))
+	ttuy.Ask("Reference", &reference)
+	var name = fmt.Sprintf("%s/%s/%s", branchType, initials, reference)
+	createBranch(&name)
+}
+
+func createBranch(branch *string) {
 	ttuy.Menu("Based on Branch", branches)
 	checkout(&copyBranch)
-	go ttuy.Spinner("Creating branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
 	var branchPath string = fmt.Sprintf("refs/heads/%s", *branch)
 	wt, err := repo.Worktree()
 	handleGit(err)
+	go ttuy.Spinner("Creating branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
 	err = wt.Checkout(&git.CheckoutOptions{
 		Create: true,
 		Force:  false,
 		Branch: plumbing.ReferenceName(branchPath),
 	})
 	ttuy.StopSpinner()
+	handleGit(err)
 	ttuy.Success("Created branch " + ttuy.Style(*branch, ttuy.Bold))
+}
+
+func createCommit() {
+	go ttuy.Spinner("Checking staged...", ttuy.Throbber)
+	wt, err := repo.Worktree()
+	handleGit(err)
+	var stage, statusErr = wt.Status()
+	handleGit(statusErr)
+	var fileName string
+	var stagedFile git.FileStatus
+	if len(stage) > 1 {
+		ttuy.StopSpinner()
+		ttuy.Fail("Unable to auto-commit, more than one file is staged.")
+	}
+	for name, file := range stage {
+		if file.Staging == git.Unmodified || file.Staging == git.Untracked || file.Worktree == git.Untracked {
+			continue
+		}
+		if file.Staging == git.Added || file.Staging == git.Modified || file.Staging == git.Renamed || file.Staging == git.Copied || file.Staging == git.Deleted {
+			fileName = name
+			stagedFile = *file
+			break
+		}
+	}
+	if fileName == "" {
+		ttuy.StopSpinner()
+		ttuy.Fail("Unable to auto-commit, stage is empty")
+	}
+	ttuy.StopSpinner()
+	ttuy.Success("Single staged file: " + ttuy.Style(fileName, ttuy.Bold))
+	go ttuy.Spinner("Committing "+ttuy.Style(fileName, ttuy.CyanText)+"...", ttuy.Throbber)
+	var _, addErr = wt.Add(fileName)
+	handleGit(addErr)
+	var prefix string
+	switch stagedFile.Staging {
+	case git.Added:
+		prefix = "Add"
+	case git.Deleted:
+		prefix = "Delete"
+	case git.Modified:
+		prefix = "Update"
+	case git.Renamed:
+		prefix = "Rename"
+	case git.Copied:
+		prefix = "Copy"
+	}
+	var message = prefix + " " + fileName
+	var _, commitErr = wt.Commit(message, &git.CommitOptions{})
+	ttuy.StopSpinner()
+	handleGit(commitErr)
+	ttuy.Successf("Committed %s", fileName)
 }

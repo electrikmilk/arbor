@@ -6,58 +6,30 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/electrikmilk/ttuy"
 )
 
 func main() {
-	customUsage = "[branch] [commit]"
+	customUsage = "[branch|commit]"
 	registerArg("help", "h", "Show this help message")
 	registerArg("remote", "r", "Use remote branches as basis")
 	registerArg("initials", "i", "Set new initials")
 	registerArg("debug", "d", "Get debug output on error")
-	if arg("help") {
+	if arg("help") || len(os.Args) <= 1 {
 		usage()
 		return
 	}
 	checkForGit()
-	if arg("initials") {
-		saveInitials()
-	} else {
-		getInitials()
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "branch":
+			startBranch()
+		case "commit":
+			createCommit()
+		}
 	}
-	var branchType string
-	ttuy.Menu("Type of Branch", []ttuy.Option{
-		{
-			Label: "Hotfix",
-			Callback: func() {
-				branchType = "hotfix"
-			},
-		},
-		{
-			Label: "Bug",
-			Callback: func() {
-				branchType = "bug"
-			},
-		},
-		{
-			Label: "Enhancement",
-			Callback: func() {
-				branchType = "enhancement"
-			},
-		},
-		{
-			Label: "Feature",
-			Callback: func() {
-				branchType = "feature"
-			},
-		},
-	})
-	var reference string
-	fmt.Println(ttuy.Style("Enter a ticket number, or dash seperated string describing the branch.", ttuy.Dim))
-	ttuy.Ask("Reference", &reference)
-	var name string = fmt.Sprintf("%s/%s/%s", branchType, initials, reference)
-	create(&name)
 }
 
 // Handle a program error
