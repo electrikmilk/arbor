@@ -23,23 +23,23 @@ var customUsage string
 
 func init() {
 	args = make(map[string]string)
-	if len(os.Args) > 1 {
-		for i, a := range os.Args {
-			if i != 0 {
-				a = strings.TrimPrefix(a, "--")
-				a = strings.TrimPrefix(a, "-")
-				if strings.Contains(a, "=") {
-					var keyValue []string = strings.Split(a, "=")
-					if len(keyValue) > 1 {
-						args[a] = keyValue[1]
-					} else {
-						args[a] = ""
-					}
-				} else {
-					args[a] = ""
-				}
+	if len(os.Args) <= 1 {
+		return
+	}
+	for i, a := range os.Args {
+		if i == 0 {
+			continue
+		}
+		a = strings.TrimPrefix(a, "--")
+		a = strings.TrimPrefix(a, "-")
+		if strings.Contains(a, "=") {
+			var keyValue = strings.Split(a, "=")
+			if len(keyValue) > 1 {
+				args[keyValue[0]] = keyValue[1]
+				continue
 			}
 		}
+		args[a] = ""
 	}
 }
 
@@ -48,7 +48,7 @@ func usage() {
 	var availableFlags string
 	for a, arg := range registered {
 		availableFlags += "-" + arg.short
-		if len(registered) != a {
+		if len(registered)-1 != a {
 			availableFlags += " "
 		}
 	}
