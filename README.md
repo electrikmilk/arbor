@@ -1,9 +1,25 @@
 # Arbor
 
-Create git branches using a template:
+## Current features
+
+### Auto commit
+
+```console
+arbor commit
+```
+
+This mimics a GitHub feature but for the command line. If you have only one file in staging, this will automatically commit it with an appropriate imparative prefix (e.g. Add file.txt).
+
+### Branch template
+
+Create git branches using a standard template:
 
 ```
 type/initials/reference
+```
+
+```console
+arbor branch
 ```
 
 ![Example](https://i.imgur.com/I4nyxIY.gif)
