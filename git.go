@@ -66,7 +66,7 @@ func getBranches() {
 }
 
 func checkout(branch *string) {
-	var branchPath string = fmt.Sprintf("refs/heads/%s", *branch)
+	var branchPath = fmt.Sprintf("refs/heads/%s", *branch)
 	wt, err := repo.Worktree()
 	handleGit(err)
 	go ttuy.Spinner("Checking out branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
@@ -175,7 +175,7 @@ func startBranch() {
 func createBranch(branch *string) {
 	ttuy.Menu("Based on Branch", branches)
 	checkout(&copyBranch)
-	var branchPath string = fmt.Sprintf("refs/heads/%s", *branch)
+	var branchPath = fmt.Sprintf("refs/heads/%s", *branch)
 	wt, err := repo.Worktree()
 	handleGit(err)
 	go ttuy.Spinner("Creating branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
