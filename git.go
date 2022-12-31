@@ -28,7 +28,7 @@ func checkForGit() {
 
 // Gets branches for this repo, either local or remote and loads them into memory
 func getBranches() {
-	if arg("r") == true {
+	if arg("r") {
 		remote, remoteErr := repo.Remote("origin")
 		handleGit(remoteErr)
 		refList, listRemoteErr := remote.List(&git.ListOptions{})

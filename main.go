@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	customUsage = "[branch] [commit]"
 	registerArg("help", "h", "Show this help message")
 	registerArg("remote", "r", "Use remote branches as basis")
 	registerArg("initials", "i", "Set new initials")
