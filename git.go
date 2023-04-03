@@ -71,7 +71,7 @@ func checkout(branch *string) {
 	handleGit(err)
 	var head, headErr = repo.Head()
 	handleGit(headErr)
-	if *branch == head.Name().String() {
+	if *branch != head.Name().String() {
 		go ttuy.Spinner("Checking out branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
 		err = wt.Checkout(&git.CheckoutOptions{
 			Create: false,
