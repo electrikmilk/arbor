@@ -7,3 +7,4 @@
 package main
 
 const eol = "\n"
+var initialsPath = os.ExpandEnv("$HOME/.initials")
