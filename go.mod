@@ -1,4 +1,4 @@
-module arbor
+module github.com/electrikmilk/arbor
 
 go 1.19
 
