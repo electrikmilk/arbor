@@ -69,15 +69,19 @@ func checkout(branch *string) {
 	var branchPath = fmt.Sprintf("refs/heads/%s", *branch)
 	wt, err := repo.Worktree()
 	handleGit(err)
-	go ttuy.Spinner("Checking out branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
-	err = wt.Checkout(&git.CheckoutOptions{
-		Create: false,
-		Force:  false,
-		Branch: plumbing.ReferenceName(branchPath),
-	})
-	ttuy.StopSpinner()
-	handleGit(err)
-	ttuy.Success("Checked out branch " + ttuy.Style(*branch, ttuy.Bold))
+	var head, headErr = repo.Head()
+	handleGit(headErr)
+	if *branch == head.Name().String() {
+		go ttuy.Spinner("Checking out branch "+ttuy.Style(*branch, ttuy.CyanText)+"...", ttuy.Throbber)
+		err = wt.Checkout(&git.CheckoutOptions{
+			Create: false,
+			Force:  false,
+			Branch: plumbing.ReferenceName(branchPath),
+		})
+		ttuy.StopSpinner()
+		handleGit(err)
+		ttuy.Success("Checked out branch " + ttuy.Style(*branch, ttuy.Bold))
+	}
 	if args.Using("remote") {
 		// ttuy.Menu("Does this pull need an SSH key?", []ttuy.Option{
 		// 	{
