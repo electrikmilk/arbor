@@ -7,3 +7,4 @@
 package main
 
 const eol = "\r\n"
+var initialsPath = "C:\initials.txt"
