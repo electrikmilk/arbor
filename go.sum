@@ -15,14 +15,6 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/eiannone/keyboard v0.0.0-20220611211555-0d226195f203 h1:XBBHcIb256gUJtLmY22n99HaZTz+r2Z51xUPi01m3wg=
 github.com/eiannone/keyboard v0.0.0-20220611211555-0d226195f203/go.mod h1:E1jcSv8FaEny+OP/5k9UxZVw9YFWGj7eI4KR/iOBqCg=
-github.com/electrikmilk/args-parser v0.0.0-20221231043212-e5e5a2b1826f h1:cG5+PWpaQLxCFnO/5I1mcejFesvGV+bG8/skGtC3jwI=
-github.com/electrikmilk/args-parser v0.0.0-20221231043212-e5e5a2b1826f/go.mod h1:mb/l2JFNNBSA8GVYL0eQCJF6Jd7UtAJTpenLZs6iIJ0=
-github.com/electrikmilk/args-parser v0.0.0-20221231044728-a82eba060ef5 h1:icH4DJ6eBuZzF9Vkz2lWISQk7QLOSehKEO/myE3f9EI=
-github.com/electrikmilk/args-parser v0.0.0-20221231044728-a82eba060ef5/go.mod h1:mb/l2JFNNBSA8GVYL0eQCJF6Jd7UtAJTpenLZs6iIJ0=
-github.com/electrikmilk/args-parser v0.0.0-20221231045923-05e5d2ab5b5b h1:EmSYoQ8CPLArPnGA/akuylNi4WNm0SZt24scgw95R50=
-github.com/electrikmilk/args-parser v0.0.0-20221231045923-05e5d2ab5b5b/go.mod h1:mb/l2JFNNBSA8GVYL0eQCJF6Jd7UtAJTpenLZs6iIJ0=
-github.com/electrikmilk/args-parser v0.0.0-20221231050212-5acd8fddd402 h1:mjpG3+eJD+tudxIEejiqcyGCiswLjdMx7Inl5nU8w0s=
-github.com/electrikmilk/args-parser v0.0.0-20221231050212-5acd8fddd402/go.mod h1:mb/l2JFNNBSA8GVYL0eQCJF6Jd7UtAJTpenLZs6iIJ0=
 github.com/electrikmilk/args-parser v0.0.0-20221231050324-56307138f9bf h1:yL7mc+Z2PTKTQz/C8OndwqkIGsx40XtkDiz0uZKfauo=
 github.com/electrikmilk/args-parser v0.0.0-20221231050324-56307138f9bf/go.mod h1:mb/l2JFNNBSA8GVYL0eQCJF6Jd7UtAJTpenLZs6iIJ0=
 github.com/electrikmilk/ttuy v0.0.0-20221231035225-77470d8c27de h1:2kvdt1e0pLXyRPTmurjAJUYX8+8zqBtRAYYcmAaGBlw=
