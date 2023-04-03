@@ -1,5 +1,9 @@
 # Arbor
 
+[![Releases](https://img.shields.io/github/v/release/electrikmilk/arbor?include_prereleases)](https://github.com/electrikmilk/arbor/releases)
+[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://pkg.go.dev/github.com/electrikmilk/arbor?tab=doc)
+[![Go Report Card](https://goreportcard.com/badge/github.com/electrikmilk/arbor)](https://goreportcard.com/report/github.com/electrikmilk/arbor)
+
 ## Current features
 
 ### Auto commit
