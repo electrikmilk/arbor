@@ -14,7 +14,6 @@ import (
 )
 
 var initials string
-var initialsPath = os.ExpandEnv("$HOME/.initials")
 
 func getInitials() {
 	if _, err := os.Stat(initialsPath); errors.Is(err, os.ErrNotExist) || args.Using("initials") {
