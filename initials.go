@@ -5,7 +5,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 
@@ -16,7 +15,7 @@ import (
 var initials string
 
 func getInitials() {
-	if _, err := os.Stat(initialsPath); errors.Is(err, os.ErrNotExist) || args.Using("initials") {
+	if _, err := os.Stat(initialsPath); os.IsNotExist(err) || args.Using("initials") {
 		saveInitials()
 		fmt.Print(ttuy.Style("Use -i flag to reset initials."+eol+eol, ttuy.Dim))
 	} else {
@@ -27,7 +26,7 @@ func getInitials() {
 }
 
 func saveInitials() {
-	if _, err := os.Stat(initialsPath); errors.Is(err, os.ErrNotExist) {
+	if _, err := os.Stat(initialsPath); os.IsNotExist(err) {
 		f, createErr := os.Create(initialsPath)
 		ttuy.FailErr("Unable to create initials", createErr)
 		defer func(f *os.File) {
