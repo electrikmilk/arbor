@@ -6,5 +6,8 @@
 
 package main
 
+import "os"
+
 const eol = "\n"
+
 var initialsPath = os.ExpandEnv("$HOME/.initials")

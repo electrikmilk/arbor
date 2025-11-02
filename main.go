@@ -14,14 +14,33 @@ import (
 
 func main() {
 	args.CustomUsage = "[branch|commit]"
-	args.Register("help", "h", "Show this help message")
-	args.Register("remote", "r", "Use remote branches as basis")
-	args.Register("initials", "i", "Set new initials")
-	args.Register("debug", "d", "Get debug output on error")
+	args.Register(args.Argument{
+		Name:        "help",
+		Short:       "h",
+		Description: "Show this help message",
+	})
+	args.Register(args.Argument{
+		Name:        "remote",
+		Short:       "r",
+		Description: "Use remote branches as basis",
+	})
+	args.Register(args.Argument{
+		Name:        "initials",
+		Short:       "i",
+		Description: "Set new initials",
+	})
+	args.Register(args.Argument{
+		Name:        "debug",
+		Short:       "d",
+		Description: "Get debug output on error",
+	})
+
 	if args.Using("help") || len(os.Args) <= 1 {
 		args.PrintUsage()
 	}
+
 	checkForGit()
+
 	if len(os.Args) > 1 {
 		switch os.Args[1] {
 		case "branch":
